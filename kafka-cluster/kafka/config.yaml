@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-config
+  namespace: kafka
+data:
+  KAFKA_CFG_ZOOKEEPER_CONNECT: "crs-zookeeper-0.zookeeper-headless.kafka.svc.cluster.local:2181,crs-zookeeper-1.zookeeper-headless.kafka.svc.cluster.local:2181,crs-zookeeper-2.zookeeper-headless.kafka.svc.cluster.local:2181"
+  KAFKA_CFG_LISTENERS: "PLAINTEXT://:9092"
+  KAFKA_CFG_ADVERTISED_LISTENERS: "PLAINTEXT://$(HOSTNAME).kafka-headless.kafka.svc.cluster.local:9092"
+  ALLOW_PLAINTEXT_LISTENER: "yes"
