@@ -15,30 +15,31 @@ spec:
         app: kafka-cluster
     spec:
       containers:
-        - name: kafka
-          image: bitnami/kafka:2.6.0
-          securityContext:
-            runAsUser: 0
-          ports:
-            - containerPort: 9092
-          env:
-            - name: KAFKA_CFG_ZOOKEEPER_CONNECT
-              valueFrom:
-                configMapKeyRef:
-                  name: kafka-config
-                  key: KAFKA_CFG_ZOOKEEPER_CONNECT
-            - name: KAFKA_CFG_LISTENERS
-              valueFrom:
-                configMapKeyRef:
-                  name: kafka-config
-                  key: KAFKA_CFG_LISTENERS
-            - name: KAFKA_CFG_ADVERTISED_LISTENERS
-              valueFrom:
-                configMapKeyRef:
-                  name: kafka-config
-                  key: KAFKA_CFG_ADVERTISED_LISTENERS
-            - name: ALLOW_PLAINTEXT_LISTENER
-              valueFrom:
-                configMapKeyRef:
-                  name: kafka-config
-                  key: ALLOW_PLAINTEXT_LISTENER
+      - name: kafka
+        image: bitnami/kafka:2.6.0
+        securityContext:
+          runAsUser: 0
+        ports:
+        - containerPort: 9092
+        env:
+        - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: KAFKA_CFG_ZOOKEEPER_CONNECT
+        - name: KAFKA_CFG_LISTENERS
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: KAFKA_CFG_LISTENERS
+        - name: ALLOW_PLAINTEXT_LISTENER
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-config
+              key: ALLOW_PLAINTEXT_LISTENER
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: "PLAINTEXT://$(HOSTNAME).kafka-headless.kafka.svc.cluster.local:9092"
