@@ -16,7 +16,7 @@ spec:
     clusters:
       - name: "main"
         layout:
-          shardsCount: 2
+          shardsCount: 1
           replicasCount: 2
         templates:
           podTemplate: clickhouse-pod-template
