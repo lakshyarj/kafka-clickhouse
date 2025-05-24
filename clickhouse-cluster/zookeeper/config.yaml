@@ -2,10 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: zookeeper-config
-  namespace: click
+  namespace: clickhouse
 data:
   ALLOW_ANONYMOUS_LOGIN: "yes"
   ZOO_SERVERS: |
-    crs-zookeeper-0.zookeeper-headless.click.svc.cluster.local:2888:3888
-    crs-zookeeper-1.zookeeper-headless.click.svc.cluster.local:2888:3888
-    crs-zookeeper-2.zookeeper-headless.click.svc.cluster.local:2888:3888
+    crs-zookeeper-0.zookeeper-headless.clickhouse.svc.cluster.local:2888:3888
+    crs-zookeeper-1.zookeeper-headless.clickhouse.svc.cluster.local:2888:3888
+    crs-zookeeper-2.zookeeper-headless.clickhouse.svc.cluster.local:2888:3888

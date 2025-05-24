@@ -2,16 +2,16 @@ apiVersion: "clickhouse.altinity.com/v1"
 kind: "ClickHouseInstallation"
 metadata:
   name: "clickhouse"
-  namespace: click
+  namespace: clickhouse
 spec:
   configuration:
     zookeeper:
       nodes:
-        - host: "crs-zookeeper-0.zookeeper-headless.click.svc.cluster.local"
+        - host: "crs-zookeeper-0.zookeeper-headless.clickhouse.svc.cluster.local"
           port: 2181
-        - host: "crs-zookeeper-1.zookeeper-headless.click.svc.cluster.local"
+        - host: "crs-zookeeper-1.zookeeper-headless.clickhouse.svc.cluster.local"
           port: 2181
-        - host: "crs-zookeeper-2.zookeeper-headless.click.svc.cluster.local"
+        - host: "crs-zookeeper-2.zookeeper-headless.clickhouse.svc.cluster.local"
           port: 2181
     clusters:
       - name: "main"
