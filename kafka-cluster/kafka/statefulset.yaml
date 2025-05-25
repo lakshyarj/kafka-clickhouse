@@ -37,9 +37,6 @@ spec:
             configMapKeyRef:
               name: kafka-config
               key: ALLOW_PLAINTEXT_LISTENER
-        - name: HOSTNAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: "PLAINTEXT://$(HOSTNAME).kafka-headless.kafka.svc.cluster.local:9092"
+              
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS__COMMAND
+          value: "echo PLAINTEXT://$(hostname).kafka-headless.kafka.svc.cluster.local:9092"

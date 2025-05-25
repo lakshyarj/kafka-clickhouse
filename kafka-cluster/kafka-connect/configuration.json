@@ -1,0 +1,17 @@
+{
+  "name": "clickhouse-sink",
+  "config": {
+    "connector.class": "com.clickhouse.kafka.connect.ClickHouseSinkConnector",
+    "tasks.max": "1",
+    "topics": "test",
+    "clickhouse.url": "http://chi-clickhouse-main-0-0-0.chi-clickhouse-main-0-0.clickhouse.svc.cluster.local:8123",
+    "clickhouse.user": "default",
+    "clickhouse.password": "",
+    "clickhouse.database": "default",
+    "insert.mode": "INSERT",
+    "auto.create.tables": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  }
+}
