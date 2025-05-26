@@ -23,7 +23,7 @@ spec:
             - containerPort: 8083
           env:
             - name: CONNECT_BOOTSTRAP_SERVERS
-              value: "kafka.kafka.svc.cluster.local:9092"
+              value: "kafka-headless.kafka.svc.cluster.local:9092"
             - name: CONNECT_REST_PORT
               value: "8083"
             - name: CONNECT_GROUP_ID
