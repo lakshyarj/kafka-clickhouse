@@ -38,5 +38,5 @@ spec:
               name: kafka-config
               key: ALLOW_PLAINTEXT_LISTENER
               
-        - name: KAFKA_CFG_ADVERTISED_LISTENERS__COMMAND
-          value: "echo PLAINTEXT://$(hostname).kafka-headless.kafka.svc.cluster.local:9092"
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: "PLAINTEXT://$(hostname).kafka-headless.kafka.svc.cluster.local:9092"
