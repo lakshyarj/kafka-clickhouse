@@ -32,6 +32,8 @@ spec:
             configMapKeyRef:
               name: kafka-config
               key: KAFKA_CFG_LISTENERS
+        - name: KAFKA_BROKER_ID_COMMAND
+          value: "echo ${HOSTNAME##*-}"
         - name: ALLOW_PLAINTEXT_LISTENER
           valueFrom:
             configMapKeyRef:
