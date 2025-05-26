@@ -18,6 +18,7 @@ kubectl apply -f kafka-cluster/kafka/
 ## 3. Deploy ClickHouse Operator and Cluster
 Install the ClickHouse Operator and deploy the ClickHouse cluster:
 ```bash
+kubectl apply -f clickhouse-cluster
 #Install ClickHouse Operator
 curl -s https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/deploy/operator/clickhouse-operator-install-bundle.yaml \
   | sed 's/namespace: kube-system/namespace: clickhouse/g' \
