@@ -23,6 +23,9 @@ spec:
             - containerPort: 2181
             - containerPort: 2888
             - containerPort: 3888
+          volumeMounts:
+            - name: zookeeper-storage
+              mountPath: /bitnami/zookeeper/data
           env:
             - name: ALLOW_ANONYMOUS_LOGIN
               valueFrom:
@@ -42,3 +45,11 @@ spec:
                   - "-c"
                   - >
                     echo $(( $(hostname | awk -F '-' '{print $NF}') + 1 )) > /bitnami/zookeeper/data/myid
+  volumeClaimTemplates:
+    - metadata:
+        name: zookeeper-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

@@ -23,7 +23,7 @@ spec:
             - containerPort: 8083
           env:
             - name: CONNECT_BOOTSTRAP_SERVERS
-              value: "kafka-headless.kafka.svc.cluster.local:9092"
+              value: "crs-kafka-0.kafka-headless.kafka.svc.cluster.local:9092,crs-kafka-1.kafka-headless.kafka.svc.cluster.local:9092,crs-kafka-2.kafka-headless.kafka.svc.cluster.local:9092"
             - name: CONNECT_REST_PORT
               value: "8083"
             - name: CONNECT_GROUP_ID
@@ -56,3 +56,10 @@ spec:
               value: "/usr/share/java,/etc/kafka-connect/jars"
             - name: CONNECT_HEALTHCHECK_ENDPOINT_DISABLED
               value: "true"
+          volumeMounts:
+            - name: connect-storage
+              mountPath: /data
+      volumes:
+        - name: connect-storage
+          persistentVolumeClaim:
+            claimName: kafka-connect-storage

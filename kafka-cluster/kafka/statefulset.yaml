@@ -32,8 +32,12 @@ spec:
             configMapKeyRef:
               name: kafka-config
               key: KAFKA_CFG_LISTENERS
-        - name: KAFKA_BROKER_ID_COMMAND
-          value: "echo ${HOSTNAME##*-}"
+        - name: POD_HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KAFKA_BROKER_ID
+          value: "$(POD_HOSTNAME##*-)"
         - name: ALLOW_PLAINTEXT_LISTENER
           valueFrom:
             configMapKeyRef:
@@ -45,3 +49,14 @@ spec:
               fieldPath: metadata.name
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
           value: "PLAINTEXT://$(POD_HOSTNAME).kafka-headless.kafka.svc.cluster.local:9092"
+        volumeMounts:
+        - name: kafka-data
+          mountPath: /bitnami/kafka
+  volumeClaimTemplates:
+  - metadata:
+      name: kafka-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 2Gi
